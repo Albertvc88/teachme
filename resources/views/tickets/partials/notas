@@ -1,0 +1,8 @@
+<a href="{{ route('tickets.details', $ticket) }}">
+
+
+{{--
+            es lo mismo que
+             route('tickets.details', $ticket->id)  o
+            route('tickets.details', $ticket->getRouteKey())
+            --}

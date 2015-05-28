@@ -1,0 +1,34 @@
+opcion #1
+
+<ul class="nav navbar-nav">
+    <li role="presentation" @if(Route::is('tickets.latest')) class="active" @endif>
+        <a href="{{ route('tickets.latest') }}">Recientes</a>
+    </li>
+    <li role="presentation" @if(Route::is('tickets.popular')) class="active" @endif>
+        <a href="{{ route('tickets.popular') }}">Populares</a>
+    </li>
+    <li role="presentation" @if(Route::is('tickets.open')) class="active" @endif>
+        <a href="{{ route('tickets.open') }}">Abiertas</a>
+    </li>
+    <li role="presentation" @if(Route::is('tickets.closed')) class="active" @endif>
+        <a href="{{ route('tickets.closed') }}">Finalizadas</a>
+    </li>
+</ul>
+
+Opcion #2
+
+<?php
+    $routes = array(
+        'tickets.latest'    => 'Recientes',
+        'tickets.popular'   => 'Populares',
+        'tickets.open'      => 'Abiertas',
+        'tickets.closed'    => 'Finalizadas'
+    );
+?>
+<ul class="nav navbar-nav">
+    @foreach ($routes as $route => $text)
+    <li role="presentation" @if(Route::is($route)) class="active" @endif>
+        <a href="{{ route($route) }}">{{ $text }}</a>
+    </li>
+    @endforeach
+</ul>

@@ -1,12 +1,12 @@
-<?php namespace App;
+<?php namespace TeachMe\Entities;
 
 use Illuminate\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model;
+
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
+class User extends Entity implements AuthenticatableContract, CanResetPasswordContract {
 
 	use Authenticatable, CanResetPassword;
 
@@ -31,4 +31,15 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 	protected $hidden = ['password', 'remember_token'];
 
+    //Un usuario tiene muchos tickets
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::getClass());
+    }
+
+    //Un usuario ha votado por muchos tickets
+    public function voted()
+    {
+        return $this->belongsToMany(Ticket::getClass(), 'ticket_votes');
+    }
 }
